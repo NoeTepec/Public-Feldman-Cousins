@@ -1,0 +1,19 @@
+universe     = vanilla
+executable   = Test_SLSQP.sh
+
+# Argumentos para el Executable
+arguments    = $(mu) $(sigma) $(CL) $(N_MC) $(it_label) 
+
+# Carpeta para guardar los logs
+output       = condor_logs/job_test_$(Cluster)_$(Process).out
+error        = condor_logs/job_test_$(Cluster)_$(Process).err
+log          = condor_logs/job_test_$(Cluster)_$(Process).log
+
++MaxRuntime  = 14000
+request_cpus = 4
+request_memory = 4000M
+
+#use_x509userproxy = True
+#x509userproxy = /tmp/x509up_u$(id -u)
+
+queue mu,sigma,CL,N_MC,it_label from Test_SLSQP_params.txt
